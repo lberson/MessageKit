@@ -26,56 +26,62 @@ import XCTest
 
 // MARK: - MessageContentCellTests
 
-@MainActor
 final class MessageContentCellTests: XCTestCase {
-    let frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+  var cell: MessageContentCell!
+  let frame = CGRect(x: 0, y: 0, width: 100, height: 100)
 
-    func testInit() {
-        let cell = MessageContentCell(frame: frame)
-        XCTAssertEqual(cell.contentView.autoresizingMask, [.flexibleWidth, .flexibleHeight])
-        XCTAssert(cell.contentView.subviews.contains(cell.cellTopLabel))
-        XCTAssert(cell.contentView.subviews.contains(cell.messageBottomLabel))
-        XCTAssert(cell.contentView.subviews.contains(cell.avatarView))
-        XCTAssert(cell.contentView.subviews.contains(cell.messageContainerView))
-    }
+  override func setUp() {
+    super.setUp()
+    cell = MessageContentCell(frame: frame)
+  }
 
-    func testMessageContainerViewPropertiesSetup() {
-        let cell = MessageContentCell(frame: frame)
-        XCTAssertTrue(cell.messageContainerView.clipsToBounds)
-        XCTAssertTrue(cell.messageContainerView.layer.masksToBounds)
-    }
+  override func tearDown() {
+    cell = nil
+    super.tearDown()
+  }
 
-    func testPrepareForReuse() {
-        let cell = MessageContentCell(frame: frame)
-        cell.prepareForReuse()
-        XCTAssertNil(cell.cellTopLabel.text)
-        XCTAssertNil(cell.cellTopLabel.attributedText)
-        XCTAssertNil(cell.messageBottomLabel.text)
-        XCTAssertNil(cell.messageBottomLabel.attributedText)
-    }
+  func testInit() {
+    XCTAssertEqual(cell.contentView.autoresizingMask, [.flexibleWidth, .flexibleHeight])
+    XCTAssert(cell.contentView.subviews.contains(cell.cellTopLabel))
+    XCTAssert(cell.contentView.subviews.contains(cell.messageBottomLabel))
+    XCTAssert(cell.contentView.subviews.contains(cell.avatarView))
+    XCTAssert(cell.contentView.subviews.contains(cell.messageContainerView))
+  }
 
-    func testApplyLayoutAttributes() {
-        let cell = MessageContentCell(frame: frame)
-        let layoutAttributes = MessagesCollectionViewLayoutAttributes()
-        layoutAttributes.avatarPosition = AvatarPosition(horizontal: .cellLeading, vertical: .cellBottom)
-        cell.apply(layoutAttributes)
+  func testMessageContainerViewPropertiesSetup() {
+    XCTAssertTrue(cell.messageContainerView.clipsToBounds)
+    XCTAssertTrue(cell.messageContainerView.layer.masksToBounds)
+  }
 
-        XCTAssertEqual(cell.avatarView.frame, layoutAttributes.frame)
-        XCTAssertEqual(cell.messageContainerView.frame.size, layoutAttributes.messageContainerSize)
-        XCTAssertEqual(cell.cellTopLabel.frame.size, layoutAttributes.cellTopLabelSize)
-        XCTAssertEqual(cell.messageBottomLabel.frame.size, layoutAttributes.messageBottomLabelSize)
-    }
+  func testPrepareForReuse() {
+    cell.prepareForReuse()
+    XCTAssertNil(cell.cellTopLabel.text)
+    XCTAssertNil(cell.cellTopLabel.attributedText)
+    XCTAssertNil(cell.messageBottomLabel.text)
+    XCTAssertNil(cell.messageBottomLabel.attributedText)
+  }
+
+  func testApplyLayoutAttributes() {
+    let layoutAttributes = MessagesCollectionViewLayoutAttributes()
+    layoutAttributes.avatarPosition = AvatarPosition(horizontal: .cellLeading, vertical: .cellBottom)
+    cell.apply(layoutAttributes)
+
+    XCTAssertEqual(cell.avatarView.frame, layoutAttributes.frame)
+    XCTAssertEqual(cell.messageContainerView.frame.size, layoutAttributes.messageContainerSize)
+    XCTAssertEqual(cell.cellTopLabel.frame.size, layoutAttributes.cellTopLabelSize)
+    XCTAssertEqual(cell.messageBottomLabel.frame.size, layoutAttributes.messageBottomLabelSize)
+  }
 }
 
 extension MessageContentCellTests {
-    private class MockMessagesDisplayDelegate: MessagesDisplayDelegate {
-        func snapshotOptionsForLocation(
-            message _: MessageType,
-            at _: IndexPath,
-            in _: MessagesCollectionView)
-        -> LocationMessageSnapshotOptions
-        {
-            LocationMessageSnapshotOptions()
-        }
+  private class MockMessagesDisplayDelegate: MessagesDisplayDelegate {
+    func snapshotOptionsForLocation(
+      message _: MessageType,
+      at _: IndexPath,
+      in _: MessagesCollectionView)
+      -> LocationMessageSnapshotOptions
+    {
+      LocationMessageSnapshotOptions()
     }
+  }
 }

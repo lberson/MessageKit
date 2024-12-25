@@ -27,7 +27,6 @@ import UIKit
 // MARK: - MessagesDisplayDelegate
 
 /// A protocol used by the `MessagesViewController` to customize the appearance of a `MessageContentCell`.
-@MainActor
 public protocol MessagesDisplayDelegate: AnyObject {
   // MARK: - All Messages
 
@@ -386,7 +385,7 @@ extension MessagesDisplayDelegate {
       returnValue = String(format: "0:%.02d", Int(duration.rounded(.up)))
     } else if duration < 3600 {
       returnValue = String(format: "%.02d:%.02d", Int(duration / 60), Int(duration) % 60)
-    } else if duration.isFinite {
+    } else {
       let hours = Int(duration / 3600)
       let remainingMinutesInSeconds = Int(duration) - hours * 3600
       returnValue = String(

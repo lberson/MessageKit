@@ -27,7 +27,6 @@ import UIKit
 
 /// A protocol used by the `MessagesCollectionViewFlowLayout` object to determine
 /// the size and layout of a `MessageCollectionViewCell` and its contents.
-@MainActor
 public protocol MessagesLayoutDelegate: AnyObject {
   /// Specifies the size to use for a header view.
   ///

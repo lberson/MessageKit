@@ -31,8 +31,8 @@ open class MessagesViewController: UIViewController, UICollectionViewDelegateFlo
   // MARK: Lifecycle
 
   deinit {
-      NotificationCenter.default.removeObserver(self, name: UIMenuController.willShowMenuNotification, object: nil)
-      MessageStyle.bubbleImageCache.removeAllObjects()
+    removeMenuControllerObservers()
+    clearMemoryCache()
   }
 
   // MARK: Open
@@ -64,11 +64,6 @@ open class MessagesViewController: UIViewController, UICollectionViewDelegateFlo
     didSet {
       updateMessageCollectionViewBottomInset()
     }
-  }
-
-  /// withAdditionalBottomSpace parameter for InputBarAccessoryView's KeyboardManager
-  open func inputBarAdditionalBottomSpace() -> CGFloat {
-    0
   }
 
   open override func viewDidLoad() {

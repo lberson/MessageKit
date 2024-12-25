@@ -52,6 +52,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    navigationItem.largeTitleDisplayMode = .never
     navigationItem.title = "MessageKit"
 
     configureMessageCollectionView()
@@ -332,7 +333,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
 
       let substring = attributedText.attributedSubstring(from: range)
       let context = substring.attribute(.autocompletedContext, at: 0, effectiveRange: nil)
-      print("Autocompleted: `", substring, "` with context: ", context ?? "-")
+      print("Autocompleted: `", substring, "` with context: ", context ?? [])
     }
 
     let components = inputBar.inputTextView.components

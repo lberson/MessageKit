@@ -22,7 +22,7 @@
 
 import Foundation
 
-public enum DetectorType: Hashable, Sendable {
+public enum DetectorType: Hashable {
   case address
   case date
   case phoneNumber
@@ -33,8 +33,8 @@ public enum DetectorType: Hashable, Sendable {
   // MARK: Public
 
   // swiftlint:disable force_try
-  public static let hashtag = DetectorType.custom(try! NSRegularExpression(pattern: "#[a-zA-Z0-9]{4,}", options: []))
-  public static let mention = DetectorType.custom(try! NSRegularExpression(pattern: "@[a-zA-Z0-9]{4,}", options: []))
+  public static var hashtag = DetectorType.custom(try! NSRegularExpression(pattern: "#[a-zA-Z0-9]{4,}", options: []))
+  public static var mention = DetectorType.custom(try! NSRegularExpression(pattern: "@[a-zA-Z0-9]{4,}", options: []))
 
   /// Simply check if the detector type is a .custom
   public var isCustom: Bool {

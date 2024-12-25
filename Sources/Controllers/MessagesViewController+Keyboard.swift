@@ -31,10 +31,7 @@ extension MessagesViewController {
   // MARK: - Register Observers
 
   internal func addKeyboardObservers() {
-    keyboardManager.bind(
-      inputAccessoryView: inputContainerView, 
-      withAdditionalBottomSpace: { [weak self] in self?.inputBarAdditionalBottomSpace() ?? 0 }
-    )
+    keyboardManager.bind(inputAccessoryView: inputContainerView)
     keyboardManager.bind(to: messagesCollectionView)
 
     /// Observe didBeginEditing to scroll content to last item if necessary
@@ -66,21 +63,6 @@ extension MessagesViewController {
         if !(self?.maintainPositionOnInputBarHeightChanged ?? false) {
           self?.messagesCollectionView.scrollToLastItem()
         }
-      }
-      .store(in: &disposeBag)
-
-    NotificationCenter.default
-      .publisher(for: UITextInputMode.currentInputModeDidChangeNotification)
-      .subscribe(on: DispatchQueue.global())
-      .receive(on: DispatchQueue.main)
-      .removeDuplicates()
-      .delay(for: .milliseconds(50), scheduler: DispatchQueue.main) /// Wait for next runloop to lay out inputView properly
-      .sink { [weak self] _ in
-          self?.updateMessageCollectionViewBottomInset()
-          
-          if !(self?.maintainPositionOnInputBarHeightChanged ?? false) {
-              self?.messagesCollectionView.scrollToLastItem()
-          }
       }
       .store(in: &disposeBag)
 

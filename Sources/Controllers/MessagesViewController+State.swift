@@ -26,22 +26,21 @@ import InputBarAccessoryView
 import UIKit
 
 extension MessagesViewController {
-    @MainActor
-    final class State {
-        /// Pan gesture for display the date of message by swiping left.
-        var panGesture: UIPanGestureRecognizer?
-        var maintainPositionOnInputBarHeightChanged = false
-        var scrollsToLastItemOnKeyboardBeginsEditing = false
+  final class State {
+    /// Pan gesture for display the date of message by swiping left.
+    var panGesture: UIPanGestureRecognizer?
+    var maintainPositionOnInputBarHeightChanged = false
+    var scrollsToLastItemOnKeyboardBeginsEditing = false
 
-        let inputContainerView: MessagesInputContainerView = .init()
-        @Published var inputBarType: MessageInputBarKind = .messageInputBar
-        let keyboardManager = KeyboardManager()
-        var disposeBag: Set<AnyCancellable> = .init()
-    }
+    let inputContainerView: MessagesInputContainerView = .init()
+    @Published var inputBarType: MessageInputBarKind = .messageInputBar
+    let keyboardManager = KeyboardManager()
+    var disposeBag: Set<AnyCancellable> = .init()
+  }
 
   // MARK: - Getters
 
-  public var keyboardManager: KeyboardManager { state.keyboardManager }
+  var keyboardManager: KeyboardManager { state.keyboardManager }
 
   var panGesture: UIPanGestureRecognizer? {
     get { state.panGesture }

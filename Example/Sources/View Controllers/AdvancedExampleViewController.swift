@@ -152,7 +152,7 @@ final class AdvancedExampleViewController: ChatViewController {
 
     messageInputBar = CameraInputBarAccessoryView()
     messageInputBar.delegate = self
-    messageInputBar.inputTextView.tintColor = .primaryColor
+    messageInputBar.inputTextView.tintColor = .red
     messageInputBar.sendButton.setTitleColor(.primaryColor, for: .normal)
     messageInputBar.sendButton.setTitleColor(
       UIColor.primaryColor.withAlphaComponent(0.3),
@@ -160,7 +160,7 @@ final class AdvancedExampleViewController: ChatViewController {
 
     messageInputBar.isTranslucent = true
     messageInputBar.separatorLine.isHidden = true
-    messageInputBar.inputTextView.tintColor = .primaryColor
+    messageInputBar.inputTextView.tintColor = .red
     messageInputBar.inputTextView.backgroundColor = UIColor(red: 245 / 255, green: 245 / 255, blue: 245 / 255, alpha: 1)
     messageInputBar.inputTextView.placeholderTextColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
     messageInputBar.inputTextView.textContainerInset = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 36)
@@ -169,6 +169,8 @@ final class AdvancedExampleViewController: ChatViewController {
     messageInputBar.inputTextView.layer.borderWidth = 1.0
     messageInputBar.inputTextView.layer.cornerRadius = 16.0
     messageInputBar.inputTextView.layer.masksToBounds = true
+      messageInputBar.inputTextView.heightAnchor.constraint(equalToConstant: 200).isActive = true
+      messageInputBar.inputTextView.backgroundColor = .red
     messageInputBar.inputTextView.scrollIndicatorInsets = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
     configureInputBarItems()
     inputBarType = .custom(messageInputBar)
@@ -493,8 +495,10 @@ extension AdvancedExampleViewController: MessagesDisplayDelegate {
 extension AdvancedExampleViewController: MessagesLayoutDelegate {
   func cellTopLabelHeight(for _: MessageType, at indexPath: IndexPath, in _: MessagesCollectionView) -> CGFloat {
     if isTimeLabelVisible(at: indexPath) {
-      return 18
+        print("!!!!!")
+      return 30
     }
+      print ("???!")
     return 0
   }
 

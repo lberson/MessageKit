@@ -67,11 +67,7 @@ extension BasicExampleViewController: MessagesDisplayDelegate {
 
   func messageStyle(for message: MessageType, at _: IndexPath, in _: MessagesCollectionView) -> MessageStyle {
     let tail: MessageStyle.TailCorner = isFromCurrentSender(message: message) ? .bottomRight : .bottomLeft
-    if let image = UIImage(named: "bobbly") {
-        return .customImageTail(image, tail)
-    } else {
-        return .bubbleTail(tail, .curved)
-    }
+    return .bubbleTail(tail, .curved)
   }
 
   func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at _: IndexPath, in _: MessagesCollectionView) {

@@ -7,31 +7,10 @@ The changelog for `MessageKit`. Also see the [releases](https://github.com/Messa
 ### Added
 
 ### Fixed
-
-### Updated
-
-- Update InputBarAccessoryView to fix some crashes and issues by [@kaspik](https://github.com/Kaspik)
     
 ### Changed
 
 ### Removed
-
-## 4.3.0
-- Fix for SwiftUI example IBAV position issues (example app) by @Janneman84 in https://github.com/MessageKit/MessageKit/pull/1807
-- Added Coursicle to the list of apps using MessageKit by @monstermac77 in https://github.com/MessageKit/MessageKit/pull/1809
-- duration NaN issue fix by @kkarakamis in https://github.com/MessageKit/MessageKit/pull/1812
-- Add OutyPlay to list of apps using MessageKit by @fabdurso in https://github.com/MessageKit/MessageKit/pull/1820
-- Fix #816 by @RomanPodymov in https://github.com/MessageKit/MessageKit/pull/1819
-- Update Makefile by @Kaspik in https://github.com/MessageKit/MessageKit/pull/1833
-- Added ability to specify additionalBottomSpace for keyboardManager by @Almaz5200 in https://github.com/MessageKit/MessageKit/pull/1821
-- build(deps): Bump rexml from 3.2.5 to 3.2.8 by @dependabot in https://github.com/MessageKit/MessageKit/pull/1839
-- Added listener for keyboard input mode changes (e.g. emoji keyboard) by @raulolmedocheca in https://github.com/MessageKit/MessageKit/pull/1842
-- build(deps): Bump rexml from 3.2.8 to 3.3.6 by @dependabot in https://github.com/MessageKit/MessageKit/pull/1858
-- Fix for overlapping detected matches by @SkiTles55 in https://github.com/MessageKit/MessageKit/pull/1853
-- Fix timestamp label layout when not in fullscreen by @CocoaBob in https://github.com/MessageKit/MessageKit/pull/1854
-- ♻️ Rename plugins to avoid clashing with SwiftLintPlugins by @technocidal in https://github.com/MessageKit/MessageKit/pull/1862
-- Added custom image masking by @GitNirajHub in https://github.com/MessageKit/MessageKit/pull/1860
-- Update to Swift 5.10
 
 ## 4.2.0
 
@@ -351,11 +330,6 @@ Version 4.0.0 comes with couple of breaking changes, please refer to [MIGRATION_
 [#912](https://github.com/MessageKit/MessageKit/pull/912) by [@julienkode](https://github.com/JulienKode)
 
 ## [2.0.0-beta.1](https://github.com/MessageKit/MessageKit/releases/tag/2.0.0-beta.1)
-
-### Fixed
-
-- Fixed `boundingRect(with:options:)` miscalculation of `MessageLabel` by using `NSLayoutManager`, like text `Ꮚ˘̴͈́ꈊ˘̴͈̀Ꮚ⋆✩`、`Tomorrow is the day`.
-[#824](https://github.com/MessageKit/MessageKit/pull/824) by [@zhongwuzw](https://github.com/zhongwuzw).
 
 ### Changed
 

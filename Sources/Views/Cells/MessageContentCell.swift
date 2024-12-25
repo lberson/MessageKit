@@ -276,7 +276,7 @@ open class MessageContentCell: MessageCollectionViewCell {
     case .natural:
       fatalError(MessageKitError.avatarPositionUnresolved)
     }
-
+     // messageContainerView.frame = CGRect(origin: origin, size: CGSize(width:200,height:200))
     messageContainerView.frame = CGRect(origin: origin, size: attributes.messageContainerSize)
   }
 
@@ -365,8 +365,9 @@ open class MessageContentCell: MessageCollectionViewCell {
   open func layoutTimeLabelView(with attributes: MessagesCollectionViewLayoutAttributes) {
     let paddingLeft: CGFloat = 10
     let origin = CGPoint(
-        x: self.frame.maxX + paddingLeft,
-        y: messageContainerView.frame.minY + messageContainerView.frame.height * 0.5 - messageTimestampLabel.font.ascender * 0.5)
+      x: UIScreen.main.bounds.width + paddingLeft,
+      y: messageContainerView.frame.minY + messageContainerView.frame.height * 0.5 - messageTimestampLabel
+        .font.ascender * 0.5)
     let size = CGSize(width: attributes.messageTimeLabelSize.width, height: attributes.messageTimeLabelSize.height)
     messageTimestampLabel.frame = CGRect(origin: origin, size: size)
   }

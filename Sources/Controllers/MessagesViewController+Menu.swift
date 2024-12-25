@@ -36,6 +36,10 @@ extension MessagesViewController {
       object: nil)
   }
 
+  internal func removeMenuControllerObservers() {
+    NotificationCenter.default.removeObserver(self, name: UIMenuController.willShowMenuNotification, object: nil)
+  }
+
   // MARK: Private
 
   // MARK: - Helpers
