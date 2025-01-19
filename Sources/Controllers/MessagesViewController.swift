@@ -141,6 +141,7 @@ open class MessagesViewController: UIViewController, UICollectionViewDelegateFlo
         return cell
       } else {
         let cell = messagesCollectionView.dequeueReusableCell(MediaMessageCell.self, for: indexPath)
+
         cell.configure(with: message, at: indexPath, and: messagesCollectionView)
         return cell
       }

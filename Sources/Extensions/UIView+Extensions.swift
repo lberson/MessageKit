@@ -23,7 +23,7 @@
 import UIKit
 
 extension UIView {
-  internal func fillSuperview() {
+  public func fillSuperview() {
     guard let superview = superview else {
       return
     }
@@ -38,7 +38,7 @@ extension UIView {
     NSLayoutConstraint.activate(constraints)
   }
 
-  internal func centerInSuperview() {
+  public func centerInSuperview() {
     guard let superview = superview else {
       return
     }
@@ -50,7 +50,7 @@ extension UIView {
     NSLayoutConstraint.activate(constraints)
   }
 
-  internal func constraint(equalTo size: CGSize) {
+  public func constraint(equalTo size: CGSize) {
     guard superview != nil else { return }
     translatesAutoresizingMaskIntoConstraints = false
     let constraints: [NSLayoutConstraint] = [

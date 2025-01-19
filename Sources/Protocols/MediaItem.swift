@@ -27,6 +27,7 @@ import UIKit
 public protocol MediaItem {
   /// The url where the media is located.
   var url: URL? { get }
+    var tn_url: URL? { get }
 
   /// The image.
   var image: UIImage? { get }
