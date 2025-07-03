@@ -24,14 +24,16 @@ import PackageDescription
 
 let package = Package(
     name: "MessageKit",
-    platforms: [.iOS(.v13)],
+    platforms: [.iOS(.v14)],
     products: [
         .library(name: "MessageKit", targets: ["MessageKit"]),
         .plugin(name: "SwiftLintPlugin", targets: ["SwiftLintPlugin"]),
         .plugin(name: "SwiftFormatPlugin", targets: ["SwiftFormatPlugin"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/nathantannar4/InputBarAccessoryView", .upToNextMajor(from: "6.1.0")),
+        .package(path: "../InputBarAccessoryView"), // <-- LOCAL
+
+        //.package(url: "https://github.com/nathantannar4/InputBarAccessoryView", .upToNextMajor(from: "6.1.0")),
     ],
     targets: [
         // MARK: - MessageKit
