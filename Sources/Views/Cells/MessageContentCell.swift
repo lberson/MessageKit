@@ -26,6 +26,7 @@ import UIKit
 /// A subclass of `MessageCollectionViewCell` used to display text, media, and location messages.
 open class MessageContentCell: MessageCollectionViewCell {
   // MARK: Lifecycle
+    var message:MessageType?
 
   public override init(frame: CGRect) {
     super.init(frame: frame)
@@ -56,7 +57,7 @@ open class MessageContentCell: MessageCollectionViewCell {
   open var cellTopLabel: InsetLabel = {
     let label = InsetLabel()
     label.numberOfLines = 0
-    label.textAlignment = .center
+      label.textAlignment = .center
     return label
   }()
 
@@ -81,6 +82,15 @@ open class MessageContentCell: MessageCollectionViewCell {
     label.numberOfLines = 0
     return label
   }()
+open    var bubbleTimeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "22:22"
+        label.font = UIFont.systemFont(ofSize: 11)
+        label.textColor = .gray
+        label.backgroundColor = .clear
+        label.textAlignment = .right
+        return label
+    }()
 
   /// The time label of the messageBubble.
   open var messageTimestampLabel = InsetLabel()
@@ -97,6 +107,7 @@ open class MessageContentCell: MessageCollectionViewCell {
     cellBottomLabel.text = nil
     messageTopLabel.text = nil
     messageBottomLabel.text = nil
+      bubbleTimeLabel.text = nil
     messageTimestampLabel.attributedText = nil
   }
 
@@ -110,9 +121,35 @@ open class MessageContentCell: MessageCollectionViewCell {
       messageContainerView,
       avatarView,
       messageTimestampLabel)
+    //  contentView.addSubview(bubbleTimeLabel)
+
   }
 
   // MARK: - Configuration
+    private func layoutBubbleTimeLabel() {
+        let size = bubbleTimeLabel.intrinsicContentSize
+        let horizontalPadding: CGFloat = 0
+        let verticalSpacing: CGFloat = 5  // Space between bubble and time label
+
+        // Position: below messageContainerView
+        let x: CGFloat
+      //  if isOutgoing {
+            // Right-aligned for current user
+            x = messageContainerView.frame.maxX - size.width - horizontalPadding
+            bubbleTimeLabel.textAlignment = .right
+     //   } else {
+            // Left-aligned for others
+          //  x = messageContainerView.frame.minX + horizontalPadding
+            bubbleTimeLabel.textAlignment = .left
+     //   }
+        let y = messageContainerView.frame.maxY + verticalSpacing
+
+        bubbleTimeLabel.frame = CGRect(x: x, y: y, width: size.width, height: size.height)
+    }
+
+
+   
+
 
   open override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
     super.apply(layoutAttributes)
@@ -126,6 +163,7 @@ open class MessageContentCell: MessageCollectionViewCell {
     layoutAvatarView(with: attributes)
     layoutAccessoryView(with: attributes)
     layoutTimeLabelView(with: attributes)
+    // layoutBubbleTimeLabel()
   }
 
   /// Used to configure the cell.
@@ -165,8 +203,19 @@ open class MessageContentCell: MessageCollectionViewCell {
     messageBottomLabel.attributedText = bottomMessageLabelText
     messageTimestampLabel.attributedText = messageTimestampLabelText
     messageTimestampLabel.isHidden = !messagesCollectionView.showMessageTimestampOnSwipeLeft
-  }
+      //self.bubbleTimeLabel.text = "00:00"
+      self.message = message
+      let timeString = self.message.flatMap() { message in
+          let formatter = DateFormatter()
+          formatter.dateFormat = "HH:mm"
+          return formatter.string(from: message.sentDate)
+      }
+      
+      bubbleTimeLabel.text = timeString
 
+  }
+   
+   
   /// Handle tap gesture on contentView and its subviews.
   open override func handleTapGesture(_ gesture: UIGestureRecognizer) {
     let touchLocation = gesture.location(in: self)
@@ -265,7 +314,7 @@ open class MessageContentCell: MessageCollectionViewCell {
           .messageContainerPadding.top
       }
     }
-
+     // origin.y+= 20
     let avatarPadding = attributes.avatarLeadingTrailingPadding
     switch attributes.avatarPosition.horizontal {
     case .cellLeading:
