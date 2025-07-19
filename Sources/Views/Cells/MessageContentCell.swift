@@ -107,7 +107,7 @@ open    var bubbleTimeLabel: UILabel = {
     cellBottomLabel.text = nil
     messageTopLabel.text = nil
     messageBottomLabel.text = nil
-      bubbleTimeLabel.text = nil
+  //    bubbleTimeLabel.text = nil
     messageTimestampLabel.attributedText = nil
   }
 
