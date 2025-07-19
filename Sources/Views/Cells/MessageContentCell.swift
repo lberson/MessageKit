@@ -120,22 +120,23 @@ open    var bubbleTimeLabel: UILabel = {
       cellBottomLabel,
       messageContainerView,
       avatarView,
-      messageTimestampLabel)
-    //  contentView.addSubview(bubbleTimeLabel)
+      messageTimestampLabel,
+      bubbleTimeLabel)
+     // contentView.addSubview(bubbleTimeLabel)
 
   }
 
   // MARK: - Configuration
     private func layoutBubbleTimeLabel() {
         let size = bubbleTimeLabel.intrinsicContentSize
-        let horizontalPadding: CGFloat = 0
-        let verticalSpacing: CGFloat = 5  // Space between bubble and time label
+        let horizontalPadding: CGFloat = -10
+        let verticalSpacing: CGFloat = 2  // Space between bubble and time label
 
         // Position: below messageContainerView
         let x: CGFloat
       //  if isOutgoing {
             // Right-aligned for current user
-            x = messageContainerView.frame.maxX - size.width - horizontalPadding
+            x = messageContainerView.frame.maxX - size.width + horizontalPadding
             bubbleTimeLabel.textAlignment = .right
      //   } else {
             // Left-aligned for others
@@ -144,7 +145,7 @@ open    var bubbleTimeLabel: UILabel = {
      //   }
         let y = messageContainerView.frame.maxY + verticalSpacing
 
-        bubbleTimeLabel.frame = CGRect(x: x, y: y, width: size.width, height: size.height)
+        bubbleTimeLabel.frame = CGRect(x: x, y: y, width: size.width + 20, height: size.height)
     }
 
 
@@ -163,7 +164,7 @@ open    var bubbleTimeLabel: UILabel = {
     layoutAvatarView(with: attributes)
     layoutAccessoryView(with: attributes)
     layoutTimeLabelView(with: attributes)
-    // layoutBubbleTimeLabel()
+     layoutBubbleTimeLabel()
   }
 
   /// Used to configure the cell.
@@ -212,7 +213,8 @@ open    var bubbleTimeLabel: UILabel = {
       }
       
       bubbleTimeLabel.text = timeString
-
+      bubbleTimeLabel.isHidden = false
+      setNeedsLayout()
   }
    
    
