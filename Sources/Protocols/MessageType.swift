@@ -36,4 +36,5 @@ public protocol MessageType {
 
   /// The kind of message and its underlying kind.
   var kind: MessageKind { get }
+    var translatedText: String? { get }
 }
