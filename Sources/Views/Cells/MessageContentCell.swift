@@ -422,4 +422,10 @@ open    var bubbleTimeLabel: UILabel = {
     let size = CGSize(width: attributes.messageTimeLabelSize.width, height: attributes.messageTimeLabelSize.height)
     messageTimestampLabel.frame = CGRect(origin: origin, size: size)
   }
+    
+}
+extension MessageCellDelegate {
+  ///  public func didTapBackground(in _: MessageCollectionViewCell) { }
+
+   // func didTranslateMessage(in cell: MessageContentCell){}
 }

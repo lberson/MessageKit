@@ -161,6 +161,8 @@ public protocol MessageCellDelegate: MessageLabelDelegate {
 
 extension MessageCellDelegate {
   public func didTapBackground(in _: MessageCollectionViewCell) { }
+  
+    public func didTranslateMessage(at indexPath: IndexPath, with translated: String) { }
 
   public func didTapMessage(in _: MessageCollectionViewCell) { }
 
