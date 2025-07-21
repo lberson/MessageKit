@@ -36,7 +36,7 @@ open class TextMessageSizeCalculator: MessageSizeCalculator {
     let maxWidth = messageContainerMaxWidth(for: message, at: indexPath)
 
     var messageContainerSize: CGSize
-    let attributedText: NSAttributedString
+      var attributedText: NSAttributedString
 
     let textMessageKind = message.kind.textMessageKind
     switch textMessageKind {
@@ -47,8 +47,15 @@ open class TextMessageSizeCalculator: MessageSizeCalculator {
     default:
       fatalError("messageContainerSize received unhandled MessageDataType: \(message.kind)")
     }
+      if(message.translatedText != nil && message.translatedText != ""){
+          attributedText = NSAttributedString(string: message.translatedText!, attributes: [.font: messageLabelFont])
+          
+      }
+           messageContainerSize = labelSize(for: attributedText, considering: maxWidth)
 
-    messageContainerSize = labelSize(for: attributedText, considering: maxWidth)
+         
+      
+     
 
     let messageInsets = messageLabelInsets(for: message)
     messageContainerSize.width += messageInsets.horizontal

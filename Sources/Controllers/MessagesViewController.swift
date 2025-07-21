@@ -130,7 +130,8 @@ open class MessagesViewController: UIViewController, UICollectionViewDelegateFlo
     switch message.kind {
     case .text, .attributedText, .emoji:
       if let cell = messagesDataSource.textCell(for: message, at: indexPath, in: messagesCollectionView) {
-        return cell
+        
+          return cell
       } else {
         let cell = messagesCollectionView.dequeueReusableCell(TextMessageCell.self, for: indexPath)
         cell.configure(with: message, at: indexPath, and: messagesCollectionView)
@@ -151,6 +152,7 @@ open class MessagesViewController: UIViewController, UICollectionViewDelegateFlo
       } else {
         let cell = messagesCollectionView.dequeueReusableCell(LocationMessageCell.self, for: indexPath)
         cell.configure(with: message, at: indexPath, and: messagesCollectionView)
+          
         return cell
       }
     case .audio:

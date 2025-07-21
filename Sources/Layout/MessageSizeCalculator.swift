@@ -244,6 +244,7 @@ open class MessageSizeCalculator: CellSizeCalculator {
   }
 
   open func messageContainerMaxWidth(for message: MessageType, at indexPath: IndexPath) -> CGFloat {
+     // return CGFloat(3000)
     let avatarWidth: CGFloat = avatarSize(for: message, at: indexPath).width
     let messagePadding = messageContainerPadding(for: message)
     let accessoryWidth = accessoryViewSize(for: message).width
@@ -317,7 +318,7 @@ open class MessageSizeCalculator: CellSizeCalculator {
 
   // MARK: Internal
 
-  internal func labelSize(for attributedText: NSAttributedString, considering maxWidth: CGFloat) -> CGSize {
+   open func labelSize(for attributedText: NSAttributedString, considering maxWidth: CGFloat) -> CGSize {
     let constraintBox = CGSize(width: maxWidth, height: .greatestFiniteMagnitude)
     let rect = attributedText.boundingRect(
       with: constraintBox,

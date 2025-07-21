@@ -157,12 +157,14 @@ public protocol MessageCellDelegate: MessageLabelDelegate {
   /// `indexPath(for: cell)` method. Then using the returned `IndexPath` with the `MessagesDataSource`
   /// method `messageForItem(at:indexPath:messagesCollectionView)`.
   func didStopAudio(in cell: AudioMessageCell)
+    func didTranslateMessage(at indexPath: IndexPath, with translated: String)
+
 }
 
 extension MessageCellDelegate {
   public func didTapBackground(in _: MessageCollectionViewCell) { }
   
-    public func didTranslateMessage(at indexPath: IndexPath, with translated: String) { }
+ //   public func didTranslateMessage(at indexPath: IndexPath, with translated: String) { }
 
   public func didTapMessage(in _: MessageCollectionViewCell) { }
 

@@ -131,8 +131,14 @@ open class MessagesCollectionViewFlowLayout: UICollectionViewFlowLayout {
     let message = messagesDataSource.messageForItem(at: indexPath, in: messagesCollectionView)
     switch message.kind {
     case .text:
-      return messagesLayoutDelegate
-        .textCellSizeCalculator(for: message, at: indexPath, in: messagesCollectionView) ?? textMessageSizeCalculator
+        if(messagesLayoutDelegate
+            .textCellSizeCalculator(for: message, at: indexPath, in: messagesCollectionView) != nil){
+            return messagesLayoutDelegate.textCellSizeCalculator(for: message, at: indexPath, in: messagesCollectionView)!
+        }
+        else{
+            return textMessageSizeCalculator
+
+        }
     case .attributedText:
       return messagesLayoutDelegate.attributedTextCellSizeCalculator(
         for: message,
