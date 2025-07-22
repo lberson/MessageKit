@@ -216,7 +216,8 @@ open    var bubbleTimeLabel: UILabel = {
       bubbleTimeLabel.isHidden = false
       setNeedsLayout()
   }
-   
+    
+
    
   /// Handle tap gesture on contentView and its subviews.
   open override func handleTapGesture(_ gesture: UIGestureRecognizer) {

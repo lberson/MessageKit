@@ -157,7 +157,9 @@ public protocol MessageCellDelegate: MessageLabelDelegate {
   /// `indexPath(for: cell)` method. Then using the returned `IndexPath` with the `MessagesDataSource`
   /// method `messageForItem(at:indexPath:messagesCollectionView)`.
   func didStopAudio(in cell: AudioMessageCell)
-    func didTranslateMessage(at indexPath: IndexPath, with translated: String)
+  func didTranslateMessage(at indexPath: IndexPath, with translated: String)
+    func seenStatus(at indexPath: IndexPath) -> Bool
+    func markMessageAsSeen(at indexPath: IndexPath)
 
 }
 
