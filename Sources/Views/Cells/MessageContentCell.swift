@@ -317,7 +317,6 @@ open    var bubbleTimeLabel: UILabel = {
           .messageContainerPadding.top
       }
     }
-     // origin.y+= 20
     let avatarPadding = attributes.avatarLeadingTrailingPadding
     switch attributes.avatarPosition.horizontal {
     case .cellLeading:
@@ -325,9 +324,12 @@ open    var bubbleTimeLabel: UILabel = {
     case .cellTrailing:
       origin.x = attributes.frame.width - attributes.avatarSize.width - attributes.messageContainerSize.width - attributes
         .messageContainerPadding.right - avatarPadding
+        origin.x -= 20
+
     case .natural:
       fatalError(MessageKitError.avatarPositionUnresolved)
     }
+
      // messageContainerView.frame = CGRect(origin: origin, size: CGSize(width:200,height:200))
     messageContainerView.frame = CGRect(origin: origin, size: attributes.messageContainerSize)
   }
