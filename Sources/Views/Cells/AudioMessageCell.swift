@@ -112,9 +112,9 @@ open class AudioMessageCell: MessageContentCell {
     }
 
     let tintColor = displayDelegate.audioTintColor(for: message, at: indexPath, in: messagesCollectionView)
-    playButton.imageView?.tintColor = tintColor
-    durationLabel.textColor = tintColor
-    progressView.tintColor = tintColor
+      playButton.imageView?.tintColor = .darkGray
+    durationLabel.textColor = .darkGray
+    progressView.tintColor = .darkGray
 
     if case .audio(let audioItem) = message.kind {
       durationLabel.text = displayDelegate.audioProgressTextFormat(

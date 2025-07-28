@@ -188,7 +188,7 @@ open    var bubbleTimeLabel: UILabel = {
 
     displayDelegate.configureAvatarView(avatarView, for: message, at: indexPath, in: messagesCollectionView)
 
-    displayDelegate.configureAccessoryView(accessoryView, for: message, at: indexPath, in: messagesCollectionView)
+displayDelegate.configureAccessoryView(accessoryView, for: message, at: indexPath, in: messagesCollectionView)
 
     messageContainerView.backgroundColor = messageColor
     messageContainerView.style = messageStyle
@@ -214,6 +214,8 @@ open    var bubbleTimeLabel: UILabel = {
       
       bubbleTimeLabel.text = timeString
       bubbleTimeLabel.isHidden = false
+    //  avatarView.isHidden = true
+     // layoutCellTopLabel.attributedText = "aa"
       setNeedsLayout()
   }
     

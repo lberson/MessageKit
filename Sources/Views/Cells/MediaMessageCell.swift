@@ -56,6 +56,7 @@ open class MediaMessageCell: MessageContentCell {
   open override func prepareForReuse() {
     super.prepareForReuse()
     imageView.image = nil
+    //  avatarView.isHidden = true
   }
 
   open override func configure(
@@ -68,7 +69,6 @@ open class MediaMessageCell: MessageContentCell {
     guard let displayDelegate = messagesCollectionView.messagesDisplayDelegate else {
       fatalError(MessageKitError.nilMessagesDisplayDelegate)
     }
-
     switch message.kind {
     case .photo(let mediaItem):
       imageView.image = mediaItem.image ?? mediaItem.placeholderImage
@@ -81,6 +81,8 @@ open class MediaMessageCell: MessageContentCell {
     }
 
     displayDelegate.configureMediaMessageImageView(imageView, for: message, at: indexPath, in: messagesCollectionView)
+   //   avatarView.isHidden = true
+
   }
 
   /// Handle tap gesture on contentView and its subviews.
