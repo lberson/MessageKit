@@ -25,6 +25,9 @@ import Kingfisher
 import MapKit
 import MessageKit
 import UIKit
+import SwiftUI
+
+import KeychainAccess
 
 // MARK: - AdvancedExampleViewController
 
@@ -67,6 +70,34 @@ final class AdvancedExampleViewController: ChatViewController {
     super.viewDidLoad()
 
     updateTitleView(title: "MessageKit", subtitle: "2 Online")
+      /*
+      let window = UIWindow(frame: UIScreen.main.bounds)
+
+      // Use the actual root SwiftUI View from LiveKitExample
+      let appCtx = AppContext(store: sync)
+             let root = RoomContextView()
+                 .environmentObject(appCtx)
+      let hosting = UIHostingController(rootView: root)
+             addChild(hosting)
+             hosting.view.frame = view.bounds
+             hosting.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+             view.addSubview(hosting.view)
+             hosting.didMove(toParent: self)
+             self.hosting = hosting
+      
+      
+      let rootView = RoomContextView()
+          .environmentObject(AppContext(store: sync)) // 👈 replicate environment injection
+
+          // let rootView = RoomContextView()
+      //    .environmentObject(AppContext(store: sync)) // 👈 replicate environment injection
+
+      window.rootViewController = UIHostingController(rootView: rootView)
+    //  self.window = window
+      window.makeKeyAndVisible()
+
+    
+      */
   }
 
   override func viewDidAppear(_ animated: Bool) {

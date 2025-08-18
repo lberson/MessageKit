@@ -31,8 +31,8 @@ let package = Package(
         .plugin(name: "SwiftFormatPlugin", targets: ["SwiftFormatPlugin"]),
     ],
     dependencies: [
-        .package(path: "../InputBarAccessoryView"), // <-- LOCAL
-
+       .package(path: "../InputBarAccessoryView"), // <-- LOCAL
+	//.package(url: "https://github.com/lberson/InputBarAccessoryView.git"),
         //.package(url: "https://github.com/nathantannar4/InputBarAccessoryView", .upToNextMajor(from: "6.1.0")),
     ],
     targets: [
