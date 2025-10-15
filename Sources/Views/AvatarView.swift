@@ -64,7 +64,7 @@ open class AvatarView: UIImageView {
     }
   }
 
-  open var placeholderTextColor: UIColor = .white {
+    open var placeholderTextColor: UIColor = .systemYellow {
     didSet {
       setImageFrom(initials: initials)
     }
@@ -129,7 +129,7 @@ open class AvatarView: UIImageView {
     image = getImageFrom(initials: initials)
   }
 
-  private func getImageFrom(initials: String) -> UIImage {
+  public func getImageFrom(initials: String) -> UIImage {
     let width = frame.width
     let height = frame.height
     if width == 0 || height == 0 { return UIImage() }
@@ -157,7 +157,6 @@ open class AvatarView: UIImageView {
       NSAttributedString.Key.foregroundColor: placeholderTextColor,
       NSAttributedString.Key.paragraphStyle: textStyle,
     ]
-
     let textTextHeight: CGFloat = initials.boundingRect(
       with: CGSize(width: textRect.width, height: CGFloat.infinity),
       options: .usesLineFragmentOrigin,
