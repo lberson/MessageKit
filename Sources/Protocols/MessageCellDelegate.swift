@@ -161,6 +161,9 @@ public protocol MessageCellDelegate: MessageLabelDelegate {
     func seenStatus(at indexPath: IndexPath) -> Bool
     func markMessageAsSeen(at indexPath: IndexPath)
 
+  /// Triggered when the user taps the quoted reply strip inside a message bubble.
+  func didTapReplyQuote(in cell: MessageCollectionViewCell, parentMessageId: String)
+
 }
 
 extension MessageCellDelegate {
@@ -191,4 +194,6 @@ extension MessageCellDelegate {
   public func didTapMessageBottomLabel(in _: MessageCollectionViewCell) { }
 
   public func didTapAccessoryView(in _: MessageCollectionViewCell) { }
+
+  public func didTapReplyQuote(in _: MessageCollectionViewCell, parentMessageId _: String) { }
 }
