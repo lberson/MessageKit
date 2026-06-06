@@ -127,26 +127,25 @@ open    var bubbleTimeLabel: UILabel = {
   }
 
   // MARK: - Configuration
-    private func layoutBubbleTimeLabel() {
-        let size = bubbleTimeLabel.intrinsicContentSize
-        let horizontalPadding: CGFloat = -10
-        let verticalSpacing: CGFloat = 2  // Space between bubble and time label
 
-        // Position: below messageContainerView
-        let x: CGFloat
-      //  if isOutgoing {
-            // Right-aligned for current user
-            x = messageContainerView.frame.maxX - size.width + horizontalPadding
-            bubbleTimeLabel.textAlignment = .right
-     //   } else {
-            // Left-aligned for others
-          //  x = messageContainerView.frame.minX + horizontalPadding
-            bubbleTimeLabel.textAlignment = .left
-     //   }
-        let y = messageContainerView.frame.maxY + verticalSpacing
+  /// Timestamp below the bubble — right for outgoing, left for incoming (WhatsApp-style).
+  open func layoutBubbleTimeLabel(with attributes: MessagesCollectionViewLayoutAttributes? = nil) {
+    guard messageContainerView.frame.width > 0 else { return }
+    let size = bubbleTimeLabel.intrinsicContentSize
+    let verticalSpacing: CGFloat = 2
+    let isOutgoing = attributes?.avatarPosition.horizontal == .cellTrailing
 
-        bubbleTimeLabel.frame = CGRect(x: x, y: y, width: size.width + 20, height: size.height)
+    let x: CGFloat
+    if isOutgoing {
+      x = messageContainerView.frame.maxX - size.width
+      bubbleTimeLabel.textAlignment = .right
+    } else {
+      x = messageContainerView.frame.minX
+      bubbleTimeLabel.textAlignment = .left
     }
+    let y = messageContainerView.frame.maxY + verticalSpacing
+    bubbleTimeLabel.frame = CGRect(x: x, y: y, width: max(size.width, 1), height: size.height)
+  }
 
 
    
@@ -164,7 +163,7 @@ open    var bubbleTimeLabel: UILabel = {
     layoutAvatarView(with: attributes)
     layoutAccessoryView(with: attributes)
     layoutTimeLabelView(with: attributes)
-     layoutBubbleTimeLabel()
+    layoutBubbleTimeLabel(with: attributes)
   }
 
   /// Used to configure the cell.
@@ -206,9 +205,10 @@ displayDelegate.configureAccessoryView(accessoryView, for: message, at: indexPat
     messageTimestampLabel.isHidden = !messagesCollectionView.showMessageTimestampOnSwipeLeft
       //self.bubbleTimeLabel.text = "00:00"
       self.message = message
-      let timeString = self.message.flatMap() { message in
+      let timeString = self.message.map { message in
           let formatter = DateFormatter()
-          formatter.dateFormat = "HH:mm"
+          formatter.timeStyle = .short
+          formatter.dateStyle = .none
           return formatter.string(from: message.sentDate)
       }
       
@@ -324,9 +324,7 @@ displayDelegate.configureAccessoryView(accessoryView, for: message, at: indexPat
     case .cellLeading:
       origin.x = attributes.avatarSize.width + attributes.messageContainerPadding.left + avatarPadding
     case .cellTrailing:
-      origin.x = attributes.frame.width - attributes.avatarSize.width - attributes.messageContainerSize.width - attributes
-        .messageContainerPadding.right - avatarPadding
-        origin.x -= 20
+      origin.x = attributes.frame.width - attributes.messageContainerSize.width - 20
 
     case .natural:
       fatalError(MessageKitError.avatarPositionUnresolved)
